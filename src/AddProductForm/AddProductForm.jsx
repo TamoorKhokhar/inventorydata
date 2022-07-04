@@ -9,18 +9,23 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { useDispatch, useSelector } from "react-redux";
+import { AddProduct } from "../Redux/Actions/AddproductAction";
 function AddProductForm() {
   const location = useLocation();
   const [productName, setproductName] = useState("");
   const [productQuantity, setProductQuantity] = useState();
   const [productPrice, setProductPrice] = useState();
   const [productCategory, setProductCategory] = useState([]);
-  const [productData, setproducData] = useState([]);
-
+  const [productAllData, setproducAllData] = useState([]);
+  const dispatch = useDispatch();
+  const Products = useSelector((state) => {
+    console.log(state);
+    return state?.product?.product;
+  });
   const SubmitProductForm = (e) => {
     e.preventDefault();
     if (productName && productQuantity && productPrice && productCategory) {
-      console.log(productName, productQuantity, productPrice, productCategory);
       alert("Product Data Added Successfully!");
     }
     const newEntry = {
@@ -30,8 +35,8 @@ function AddProductForm() {
       productCategory: productCategory
     };
 
-    setproducData([...productData, newEntry]);
-
+    setproducAllData([...productAllData, newEntry]);
+    dispatch(AddProduct(newEntry));
     setproductName("");
     setProductQuantity("");
     setProductPrice("");
@@ -161,7 +166,7 @@ function AddProductForm() {
             fontSize: "18px"
           }}>
           <h1>All Products</h1>
-          {productData.map((currEle, index) => {
+          {Products?.map((currEle, index) => {
             return (
               <Card
                 key={index}

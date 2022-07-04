@@ -9,13 +9,18 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { AddStore } from "../Redux/Actions/AddStoreAction";
 function StoreForm() {
   const [storeName, setStoreName] = useState("");
   const [category, setcategory] = useState([]);
   const [error, setError] = useState(false);
   const [allData, setallData] = useState([]);
-
+  const dispatch = useDispatch();
+  const StoresData = useSelector((state) => {
+    return state?.store?.store;
+  });
+  const Storedata = Object.values(StoresData);
   const SubmitForm = (e) => {
     e.preventDefault();
 
@@ -33,6 +38,7 @@ function StoreForm() {
     };
 
     setallData([...allData, newEntry]);
+    dispatch(AddStore(newEntry));
     setStoreName("");
     setTags([]);
     setcategory("");
@@ -194,7 +200,7 @@ function StoreForm() {
           fontSize: "18px"
         }}>
         <h1> All Stores </h1>
-        {allData.map((currEle, index) => {
+        {Storedata.map((currEle, index) => {
           return (
             <Card
               key={index}
