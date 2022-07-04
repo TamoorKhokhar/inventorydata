@@ -27,7 +27,7 @@ function AddProductForm() {
       productName: productName,
       productQuantity: productQuantity,
       productPrice: productPrice,
-      productCategory: productCategory,
+      productCategory: productCategory
     };
 
     setproducData([...productData, newEntry]);
@@ -44,19 +44,16 @@ function AddProductForm() {
         container
         xs={12}
         sx={{
-          background:
-            "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
+          background: "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
           display: "flex",
-          flexDirection: "row",
-        }}
-      >
+          flexDirection: "row"
+        }}>
         <Box
           component="form"
           onSubmit={SubmitProductForm}
           xs={6}
           sx={{
-            background:
-              "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
+            background: "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
             display: "flex",
             justifyContent: "center",
             alignitem: "center",
@@ -64,26 +61,23 @@ function AddProductForm() {
             marginLeft: "3%",
             width: "40vw",
             border: "5px solid #3DAD6A",
-            borderRadius: "5px",
-          }}
-        >
+            borderRadius: "5px"
+          }}>
           <Grid
             item
             sx={{
               width: "100%",
               display: "flex",
-              justifyContent: "center",
-            }}
-          >
+              justifyContent: "center"
+            }}>
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "column",
                 width: "90%",
-                color: "#132F4C",
-              }}
-            >
+                color: "#132F4C"
+              }}>
               <h1>Add Stores Product</h1>
 
               <h4>Enter Product Name:</h4>
@@ -122,8 +116,7 @@ function AddProductForm() {
                 label="Selcet CateGory"
                 helperText="Please select your Category"
                 value={productCategory}
-                onChange={(e) => setProductCategory(e.target.value)}
-              >
+                onChange={(e) => setProductCategory(e.target.value)}>
                 {location?.state?.storeCategory?.map((type) => {
                   return (
                     <MenuItem key={type} value={type}>
@@ -144,9 +137,8 @@ function AddProductForm() {
                 sx={{
                   backgroundColor: "#3DAD6A",
                   marginTop: "4%",
-                  marginBottom: "4%",
-                }}
-              >
+                  marginBottom: "4%"
+                }}>
                 Add Product
               </Button>
             </Box>
@@ -157,8 +149,7 @@ function AddProductForm() {
           item
           xs={6}
           sx={{
-            background:
-              "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
+            background: "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -167,13 +158,13 @@ function AddProductForm() {
             border: "5px solid #3DAD6A",
             borderRadius: "5px",
             color: "#132F4C",
-            fontSize: "18px",
-          }}
-        >
+            fontSize: "18px"
+          }}>
           <h1>All Products</h1>
-          {productData.map((currEle) => {
+          {productData.map((currEle, index) => {
             return (
               <Card
+                key={index}
                 sx={{
                   background:
                     "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
@@ -185,9 +176,8 @@ function AddProductForm() {
                   flexDirection: "row",
                   border: "1px solid grey",
                   marginTop: "2%",
-                  marginLeft: "2%",
-                }}
-              >
+                  marginLeft: "2%"
+                }}>
                 <CardContent>
                   <Typography gutterBottom variant="body2" component="div">
                     <b> Product Name:</b> {currEle.productName}

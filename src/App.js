@@ -1,5 +1,5 @@
-import StoreForm from "../src/Forms/StoreForm";
-import AddProductForm from "../src/Forms/AddProductForm";
+import StoreForm from "../src/StoreForm/StoreForm";
+import AddProductForm from "../src/AddProductForm/AddProductForm";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Header/Header";
 
