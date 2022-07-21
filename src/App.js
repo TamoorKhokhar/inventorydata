@@ -6,7 +6,7 @@ import AllProductData from "./allproductData/allProductData";
 import SelectedStoresProduct from "./selectedStoresProduct/selectedStoresProduct";
 import LandingPage from "./landingPage/landigPage";
 import ErrorBoundary from "./errorBoundary/errorBoundary";
-import AddProductForm from "./addProductForm/addProductForms";
+import AddProductForm from "./addProductForm/addProductForm";
 
 function App() {
   return (
