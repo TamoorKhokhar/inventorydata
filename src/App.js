@@ -9,6 +9,8 @@ import LandingPage from "./landingPage/landigPage";
 import ErrorBoundary from "./errorBoundary/errorBoundary";
 
 function App() {
+  console.log("jjjjj");
+
   return (
     <>
       <ErrorBoundary>
