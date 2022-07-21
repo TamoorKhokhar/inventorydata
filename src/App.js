@@ -1,5 +1,4 @@
-import StoreForm from "../src/StoreForm/StoreForm";
-import AddProductForm from "../src/addProductForm/addProductForm";
+import StoreForm from "./StoreForm/StoreForm";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Header/Header";
 import AllStoresData from "./allStoresData/allStoresData";
@@ -7,6 +6,7 @@ import AllProductData from "./allproductData/allProductData";
 import SelectedStoresProduct from "./selectedStoresProduct/selectedStoresProduct";
 import LandingPage from "./landingPage/landigPage";
 import ErrorBoundary from "./errorBoundary/errorBoundary";
+import AddProductForm from "./addProductForm/addProductForms";
 
 function App() {
   console.log("jjjjj");
