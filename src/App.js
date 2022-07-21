@@ -9,8 +9,6 @@ import ErrorBoundary from "./errorBoundary/errorBoundary";
 import AddProductForm from "./addProductForm/addProductForms";
 
 function App() {
-  console.log("jjjjj");
-
   return (
     <>
       <ErrorBoundary>
