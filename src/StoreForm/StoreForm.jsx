@@ -3,24 +3,17 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AddStore } from "../Redux/Actions/AddStoreAction";
+import { v4 as uuidv4 } from "uuid";
 function StoreForm() {
   const [storeName, setStoreName] = useState("");
   const [category, setcategory] = useState([]);
   const [error, setError] = useState(false);
   const [allData, setallData] = useState([]);
   const dispatch = useDispatch();
-  const StoresData = useSelector((state) => {
-    return state?.store?.store;
-  });
-  const Storedata = Object.values(StoresData);
   const SubmitForm = (e) => {
     e.preventDefault();
 
@@ -32,6 +25,7 @@ function StoreForm() {
     }
 
     const newEntry = {
+      id: uuidv4(),
       storeName: storeName,
       tags: tags,
       categoryType: category
@@ -63,39 +57,34 @@ function StoreForm() {
       container
       fixed
       sx={{
-        height: "100vh",
         background: "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
         display: "flex",
         justifyContent: "center",
-        flexDirection: "column"
+        height: "100vh"
       }}>
-      <Box component="form" onSubmit={SubmitForm}>
-        <Grid
-          container
-          xs={12}
+      <Grid item xs={8} sx={{ display: "flex", justifyContent: "center" }}>
+        <Box
+          component="form"
+          onSubmit={SubmitForm}
           sx={{
             background: "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
-            marginTop: "2%",
-            marginLeft: "3%",
+            alignitem: "center",
+            marginTop: "4rem",
             width: "50vw",
             border: "5px solid #3DAD6A",
             borderRadius: "5px",
-            overflow: "hidden"
+            height: "max-content"
           }}>
-          <Grid
-            item
-            xs={10}
+          <Box
             sx={{
               display: "flex",
-              justifyContent: "center",
               flexDirection: "column",
-              color: "#132F4C",
-              fontSize: "18px"
+              width: "90%",
+              color: "#132F4C"
             }}>
-            <h1>Create Store</h1>
+            <h1>CREATE STORE</h1>
             <h4>Enter Store Name:</h4>
             <TextField
               required
@@ -168,7 +157,6 @@ function StoreForm() {
                 </Grid>
               ))}
             </Grid>
-
             <Button
               disabled={storeName === "" || tags?.length === 0}
               variant="contained"
@@ -178,74 +166,12 @@ function StoreForm() {
                 marginTop: "4%",
                 marginBottom: "4%"
               }}>
-              Create Store
+              <Link to="/allstores" style={{ textDecoration: "none", color: "white" }}>
+                Add Store
+              </Link>
             </Button>
-          </Grid>
-        </Grid>
-      </Box>
-
-      <Grid
-        item
-        xs={12}
-        sx={{
-          background: "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginTop: "1%",
-          width: "40vw",
-          border: "5px solid #3DAD6A",
-          borderRadius: "5px",
-          color: "#132F4C",
-          fontSize: "18px"
-        }}>
-        <h1> All Stores </h1>
-        {Storedata.map((currEle, index) => {
-          return (
-            <Card
-              key={index}
-              sx={{
-                background:
-                  "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
-                borderRadius: "5px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-                border: "1px solid grey",
-                marginTop: "2%",
-                marginLeft: "2%"
-              }}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {currEle.storeName}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Store Description: Your Store
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#3DAD6A",
-                    marginTop: "4%",
-                    marginBottom: "4%"
-                  }}>
-                  <Link
-                    to="/product"
-                    state={{
-                      fromStore: true,
-                      storeCategory: currEle.tags
-                    }}
-                    style={{ textDecoration: "none", color: "white" }}>
-                    Add Product
-                  </Link>
-                </Button>
-              </CardActions>
-            </Card>
-          );
-        })}
+          </Box>
+        </Box>
       </Grid>
     </Grid>
   );

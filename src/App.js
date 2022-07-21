@@ -1,16 +1,27 @@
 import StoreForm from "../src/StoreForm/StoreForm";
-import AddProductForm from "../src/AddProductForm/AddProductForm";
+import AddProductForm from "../src/addProductForm/addProductForm";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Header/Header";
+import AllStoresData from "./allStoresData/allStoresData";
+import AllProductData from "./allproductData/allProductData";
+import SelectedStoresProduct from "./selectedStoresProduct/selectedStoresProduct";
+import LandingPage from "./landingPage/landigPage";
+import ErrorBoundary from "./errorBoundary/errorBoundary";
 
 function App() {
   return (
     <>
-      <Header />
-
+      <ErrorBoundary>
+        <Header />
+      </ErrorBoundary>
       <Routes>
-        <Route path="/product" element={<AddProductForm />} />
-        <Route path="/" element={<StoreForm />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/createstores" element={<StoreForm />} />
+        <Route path="/allstores" element={<AllStoresData />} />
+        <Route path="/allProducts" element={<AllProductData />} />
+        <Route path="/allproductdata" element={<AllProductData />} />
+        <Route path="/product/:id" element={<AddProductForm />} />
+        <Route path="/selectedstores/:id" element={<SelectedStoresProduct />} />
       </Routes>
     </>
   );
