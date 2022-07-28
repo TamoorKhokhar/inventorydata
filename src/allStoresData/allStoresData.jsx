@@ -16,7 +16,7 @@ function AllStoresData() {
   const Storedata = Object.values(StoresData);
   return (
     <>
-      <Grid container xs={12}>
+      <Grid container>
         <Grid
           item
           xs={8}
@@ -25,38 +25,41 @@ function AllStoresData() {
             justifyContent: "center",
             flexDirection: "column",
             textAlign: "center",
-            color: "#132F4C",
-            fontSize: "18px"
+            color: "#132F4C"
           }}>
           <h1>ALL STORES DATA</h1>
         </Grid>
-        <Button
-          xs={8}
-          variant="contained"
-          sx={{
-            backgroundColor: "#3DAD6A",
-            marginTop: "4%",
-            marginBottom: "4%"
-          }}>
-          <Link to="/createstores" style={{ textDecoration: "none", color: "white" }}>
-            Create Store
-          </Link>
-        </Button>
+        <Grid item xs={4}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#3DAD6A",
+              marginTop: "1.5rem"
+            }}>
+            <Link to="/createstores" style={{ textDecoration: "none", color: "white" }}>
+              Create Store
+            </Link>
+          </Button>
+        </Grid>
       </Grid>
-      <TableContainer xs={12} component={Paper} sx={{ marginTop: "20px" }}>
+      <TableContainer
+        component={Paper}
+        sx={{
+          marginTop: "20px"
+        }}>
         <Table size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>
+              <TableCell align="center">
                 <b>Index</b>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                 <b>Store Name</b>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                 <b>Categories</b>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                 <b>View Stores</b>
               </TableCell>
             </TableRow>
@@ -65,10 +68,10 @@ function AllStoresData() {
             {Storedata.map((currEle, index) => {
               return (
                 <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                  <TableCell>{index}</TableCell>
-                  <TableCell align="right">{currEle.storeName}</TableCell>
-                  <TableCell align="right">{currEle.tags}</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">{index}</TableCell>
+                  <TableCell align="center">{currEle.storeName}</TableCell>
+                  <TableCell align="center">{currEle.tags}</TableCell>
+                  <TableCell align="center">
                     <Button
                       variant="contained"
                       sx={{

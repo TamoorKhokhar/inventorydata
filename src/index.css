@@ -11,12 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-/* .css-1kxsy3g-MuiButtonBase-root-MuiButton-root:hover{
-  background-color: #3DAD6A !important;
-} */
-/* .css-1esf0fu-MuiButtonBase-root-MuiButton-root:hover{
-  background-color: #3DAD6A !important;
-} */
 .MuiButton-root:hover{
   background-color: #3DAD6A !important;
+}
+.css-1s0hp0k-MuiDataGrid-columnHeadersInner {
+  background-color: #3DAD6A !important;
+  color: white;
 }
