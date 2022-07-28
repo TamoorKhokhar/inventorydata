@@ -18,8 +18,7 @@ const theme = createTheme({
     },
     h2: {
       fontSize: "2rem",
-      fontWeight: 600,
-      marginTop: "1rem"
+      fontWeight: 600
     },
     h3: {
       fontSize: "1em",
@@ -28,10 +27,9 @@ const theme = createTheme({
       marginBottom: "0.5rem"
     },
     h4: {
+      fontSize: "2rem",
       fontWeight: 600,
-      lineHeight: "1.4",
-      marginBottom: "0.35em",
-      fontFamily: "sans-serif"
+      marginTop: "1rem"
     },
     h5: {
       fontWeight: 600,

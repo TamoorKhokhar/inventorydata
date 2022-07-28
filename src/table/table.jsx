@@ -11,14 +11,14 @@ import { Typography } from "@mui/material";
 import theme from "../theme/theme";
 import { ThemeProvider } from "@emotion/react";
 const columns = [
-  { field: "index", headerName: "Store No", width: 420 },
-  { field: "name", headerName: "Store Name", width: 420 },
-  { field: "categories", headerName: "Store Category", width: 420 },
+  { field: "index", headerName: "Store No", flex: 1 },
+  { field: "name", headerName: "Store Name", flex: 1 },
+  { field: "categories", headerName: "Store Category", flex: 1 },
 
   {
     field: "view",
     headerName: "View Store",
-    width: 420,
+    flex: 1,
     sortable: false,
     renderCell: (params) => {
       return (
@@ -76,44 +76,26 @@ export default function Table() {
               color: "secondary.main",
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
               marginTop: "2rem"
             }}>
-            <Grid
-              item
-              xs={5}
+            <Typography variant="h2">STORES DATA</Typography>
+            <Button
+              variant="contained"
               sx={{
-                display: "flex",
-                justifyContent: "flex-start"
+                backgroundColor: "#3DAD6A",
+                paddingTop: "0.5rem"
               }}>
-              <Typography variant="h2">STORES DATA</Typography>
-            </Grid>
-
-            <Grid
-              item
-              xs={5}
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                height: "max-content"
-              }}>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#3DAD6A"
+              <Link
+                to="/createstores"
+                style={{
+                  textDecoration: "none",
+                  color: "white"
                 }}>
-                <Link
-                  to="/createstores"
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                    display: "flex",
-                    justifyContent: "center"
-                  }}>
-                  <AddCircleOutlineIcon
-                    sx={{ height: "2.5rem", width: "2.5rem" }}></AddCircleOutlineIcon>
-                </Link>
-              </Button>
-            </Grid>
+                <AddCircleOutlineIcon
+                  sx={{ height: "2.5rem", width: "2.5rem" }}></AddCircleOutlineIcon>
+              </Link>
+            </Button>
           </Grid>
           <Grid
             container

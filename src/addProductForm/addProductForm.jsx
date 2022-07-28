@@ -92,7 +92,7 @@ function AddProductForm() {
                 width: "90%",
                 color: "#132F4C"
               }}>
-              <Typography variant="h2">ADD STORES PRODUCT</Typography>
+              <Typography variant="h4">ADD STORES PRODUCT</Typography>
 
               <Typography variant="h3">Enter Product Name:</Typography>
               <TextField

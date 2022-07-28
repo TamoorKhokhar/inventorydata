@@ -87,7 +87,7 @@ function StoreForm() {
                 width: "90%",
                 color: "#132F4C"
               }}>
-              <Typography variant="h2">CREATE STORE</Typography>
+              <Typography variant="h4">CREATE STORE</Typography>
               <Typography variant="h3">Enter Store Name:</Typography>
               <TextField
                 required
