@@ -52,24 +52,27 @@ export default function SelectedStoresProduct() {
               color: "secondary.main",
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
               marginTop: "2rem"
             }}>
-            <Grid item xs={5}>
-              <Typography variant="h2">PRODUCTS DATA</Typography>
-            </Grid>
+            <Typography variant="h2">PRODUCTS DATA</Typography>
 
-            <Grid item xs={2} sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#3DAD6A"
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#3DAD6A",
+                paddingTop: "0.5rem"
+              }}>
+              <Link
+                to={`/product/${id}`}
+                style={{
+                  textDecoration: "none",
+                  color: "white"
                 }}>
-                <Link to={`/product/${id}`} style={{ textDecoration: "none", color: "white" }}>
-                  <ProductionQuantityLimitsIcon
-                    sx={{ height: "2.5rem", width: "2.5rem" }}></ProductionQuantityLimitsIcon>
-                </Link>
-              </Button>
-            </Grid>
+                <ProductionQuantityLimitsIcon
+                  sx={{ height: "2.5rem", width: "2.5rem" }}></ProductionQuantityLimitsIcon>
+              </Link>
+            </Button>
           </Grid>
           <Grid
             item

@@ -94,7 +94,7 @@ function LandingPage() {
               style={{ width: "100%", objectFit: "contain" }}
             />
           </Box>
-          <Typography variant="h6"> Software for growing your businesses.</Typography>
+          <Typography variant="h6">Inventory Software</Typography>
         </Grid>
         <Grid
           item
