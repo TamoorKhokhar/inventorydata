@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,83 +8,150 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { getProducts } from "../services/tableDataServices";
+import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import theme from "../theme/theme";
+import Typography from "@mui/material/Typography";
+import { ThemeProvider } from "@emotion/react";
 
 export default function SelectedStoresProduct() {
   const { id } = useParams();
-  const Products = useSelector((state) => {
-    console.log(state?.product?.product, "products");
-    return state?.product?.product?.filter((item) => item?.storeId === id);
-  });
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    const callingApi = () => {
+      getProducts(id)
+        .then((res) => {
+          console.log(res.data, "data");
+          setProduct(res.data.payload.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    callingApi();
+  }, []);
   return (
-    <>
-      <Grid container xs={12}>
+    <ThemeProvider theme={theme}>
+      <Grid
+        sx={{
+          background: "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
+          height: "100vh"
+        }}>
         <Grid
-          item
-          xs={8}
+          container
           sx={{
             display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            textAlign: "center",
-            color: "#132F4C"
+            justifyContent: "center"
           }}>
-          <h1>ALL PRODUCTS DATA</h1>
-        </Grid>
-        <Grid item xs={4}>
-          <Button
-            variant="contained"
+          <Grid
+            container
+            item
+            xs={10}
             sx={{
-              backgroundColor: "#3DAD6A",
-              marginTop: "4%",
-              marginBottom: "4%"
+              color: "secondary.main",
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "2rem"
             }}>
-            <Link to={`/product/${id}`} style={{ textDecoration: "none", color: "white" }}>
-              Add Product
-            </Link>
-          </Button>
+            <Grid item xs={5}>
+              <Typography variant="h2">PRODUCTS DATA</Typography>
+            </Grid>
+
+            <Grid item xs={2} sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#3DAD6A"
+                }}>
+                <Link to={`/product/${id}`} style={{ textDecoration: "none", color: "white" }}>
+                  <ProductionQuantityLimitsIcon
+                    sx={{ height: "2.5rem", width: "2.5rem" }}></ProductionQuantityLimitsIcon>
+                </Link>
+              </Button>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            xs={10}
+            sx={{
+              height: 450,
+              border: "5px solid #3DAD6A",
+              borderRadius: "5px",
+              overflowY: "scroll",
+              marginTop: "2rem"
+            }}>
+            <TableContainer
+              component={Paper}
+              sx={{
+                background:
+                  "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)"
+              }}>
+              <Table size="medium" aria-label="a dense table">
+                <TableHead>
+                  <TableRow
+                    sx={{
+                      backgroundColor: "#3DAD6A"
+                    }}>
+                    <TableCell
+                      align="center"
+                      sx={{
+                        color: "white"
+                      }}>
+                      <b>Index</b>
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      sx={{
+                        color: "white"
+                      }}>
+                      <b>Product Name</b>
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      sx={{
+                        color: "white"
+                      }}>
+                      <b>Product Quantity:</b>
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      sx={{
+                        color: "white"
+                      }}>
+                      <b>Product Price</b>
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      sx={{
+                        color: "white"
+                      }}>
+                      <b>Product Categories</b>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {product?.map((currEle, index) => {
+                    return (
+                      <TableRow
+                        key={currEle?.storeId}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0, color: "#132F4C" }
+                        }}>
+                        <TableCell align="center">{index}</TableCell>
+                        <TableCell align="center">{currEle.name}</TableCell>
+                        <TableCell align="center">{currEle.quantity}</TableCell>
+                        <TableCell align="center">{currEle.price}</TableCell>
+                        <TableCell align="center">{currEle.category}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
         </Grid>
       </Grid>
-      <TableContainer xs={12} component={Paper} sx={{ marginTop: "20px" }}>
-        <Table size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <b>Index</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>Product Name</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>Product Quantity:</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>Product Price</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>Product Categories</b>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {Products?.map((currEle, index) => {
-              return (
-                <TableRow
-                  key={currEle?.storeId}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                  <TableCell>{index}</TableCell>
-                  <TableCell align="right">{currEle.productName}</TableCell>
-                  <TableCell align="right">{currEle.productQuantity}</TableCell>
-                  <TableCell align="right">{currEle.productPrice}</TableCell>
-                  <TableCell align="right">{currEle.productCategory}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      ;
-    </>
+    </ThemeProvider>
   );
 }

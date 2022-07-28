@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,16 +8,28 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { getProducts } from "../services/tableDataServices";
+import { Link, useParams } from "react-router-dom";
 
 function AllProductData() {
-  const Products = useSelector((state) => {
-    return state?.product?.product;
-  });
+  const { id } = useParams();
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    const callingApi = () => {
+      getProducts(id)
+        .then((res) => {
+          console.log(res.data, "data");
+          setProduct(res.data.payload.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    callingApi();
+  }, []);
   return (
     <>
-      <Grid container xs={12}>
+      <Grid container>
         <Grid
           item
           xs={8}
@@ -48,7 +60,7 @@ function AllProductData() {
         <Table size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>
+              <TableCell align="right">
                 <b>Index</b>
               </TableCell>
               <TableCell align="right">
@@ -66,14 +78,14 @@ function AllProductData() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Products?.map((currEle, index) => {
+            {product?.map((currEle, index) => {
               return (
                 <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                   <TableCell>{index}</TableCell>
-                  <TableCell align="right">{currEle.productName}</TableCell>
-                  <TableCell align="right">{currEle.productQuantity}</TableCell>
-                  <TableCell align="right">{currEle.productPrice}</TableCell>
-                  <TableCell align="right">{currEle.productCategory}</TableCell>
+                  <TableCell align="center">{currEle.name}</TableCell>
+                  <TableCell align="center">{currEle.quantity}</TableCell>
+                  <TableCell align="center">{currEle.price}</TableCell>
+                  <TableCell align="center">{currEle.category}</TableCell>
                 </TableRow>
               );
             })}
