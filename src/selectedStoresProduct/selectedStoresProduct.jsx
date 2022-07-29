@@ -117,7 +117,7 @@ export default function SelectedStoresProduct() {
                       sx={{
                         color: "white"
                       }}>
-                      <b>Product Quantity:</b>
+                      <b>Product Quantity</b>
                     </TableCell>
                     <TableCell
                       align="center"
