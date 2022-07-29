@@ -14,8 +14,8 @@ function LandingPage() {
         container
         sx={{
           background: "radial-gradient(81.76% 81.76% at 44.66% 56.57%, #FFFFFF 0%, #D1F0F4 100%)",
-          height: "max-content",
-          boxShadow: "0px 0px 30px 3px rgba(71, 80, 107, 0.7)"
+          boxShadow: "0px 0px 30px 3px rgba(71, 80, 107, 0.7)",
+          height: "max-content"
         }}>
         <Grid
           item
@@ -84,7 +84,7 @@ function LandingPage() {
           }}>
           <Box
             sx={{
-              width: "100%",
+              width: "90%",
               backgroundColor: "#FAFAFA",
               overflow: "hidden"
             }}>
@@ -108,7 +108,7 @@ function LandingPage() {
           }}>
           <Box
             sx={{
-              width: "100%",
+              width: "90%",
               backgroundColor: "#FAFAFA",
               overflow: "hidden"
             }}>

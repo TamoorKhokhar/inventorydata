@@ -7,10 +7,13 @@ import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
 import { AddProduct } from "../Redux/Actions/AddproductAction";
 import { getTags, addProduct } from "../services/tableDataServices";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import theme from "../theme/theme";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function AddProductForm() {
   const [productName, setproductName] = useState("");
   const [productQuantity, setProductQuantity] = useState();
@@ -19,7 +22,7 @@ function AddProductForm() {
   const [productAllData, setproducAllData] = useState([]);
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const [Items, setItems] = useState([]);
   useEffect(() => {
     const callingApi = () => {
@@ -36,6 +39,7 @@ function AddProductForm() {
 
   const SubmitProductForm = async (e) => {
     e.preventDefault();
+    toast.success("Product Added SuccessFully!");
     const newEntry = {
       name: productName,
       quantity: productQuantity,
@@ -50,6 +54,9 @@ function AddProductForm() {
     setProductQuantity("");
     setProductPrice("");
     setProductCategory("");
+    setTimeout(() => {
+      navigate(`/selectedStores/${id}`);
+    }, 3000);
   };
 
   return (
@@ -154,14 +161,21 @@ function AddProductForm() {
                     marginTop: "1rem",
                     marginBottom: "1.5rem",
                     float: "right",
-                    width: "9rem"
+                    width: "9rem",
+                    color: "white"
                   }}>
-                  <Link
-                    to={`/selectedStores/${id}`}
-                    style={{ textDecoration: "none", color: "white" }}>
-                    Add Product
-                  </Link>
+                  Add Product
                 </Button>
+                <ToastContainer
+                  position="top-right"
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
               </Grid>
             </Box>
           </Box>

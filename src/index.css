@@ -14,8 +14,7 @@ code {
 .MuiButton-root:hover{
   background-color: #3DAD6A !important;
 }
-
-.css-f3jnds-MuiDataGrid-columnHeaders{
+.super-app-theme--header {
   background-color: #3DAD6A !important;
   color: white;
 }
