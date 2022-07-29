@@ -14,6 +14,7 @@ import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantity
 import theme from "../theme/theme";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@emotion/react";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function SelectedStoresProduct() {
   const { id } = useParams();
@@ -56,23 +57,24 @@ export default function SelectedStoresProduct() {
               marginTop: "2rem"
             }}>
             <Typography variant="h2">PRODUCTS DATA</Typography>
-
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#3DAD6A",
-                paddingTop: "0.5rem"
-              }}>
-              <Link
-                to={`/product/${id}`}
-                style={{
-                  textDecoration: "none",
-                  color: "white"
+            <Tooltip title="Add Product" placement="right-end" arrow>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#3DAD6A",
+                  paddingTop: "0.5rem"
                 }}>
-                <ProductionQuantityLimitsIcon
-                  sx={{ height: "2.5rem", width: "2.5rem" }}></ProductionQuantityLimitsIcon>
-              </Link>
-            </Button>
+                <Link
+                  to={`/product/${id}`}
+                  style={{
+                    textDecoration: "none",
+                    color: "white"
+                  }}>
+                  <ProductionQuantityLimitsIcon
+                    sx={{ height: "2.5rem", width: "2.5rem" }}></ProductionQuantityLimitsIcon>
+                </Link>
+              </Button>
+            </Tooltip>
           </Grid>
           <Grid
             item

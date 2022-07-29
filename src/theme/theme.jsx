@@ -37,15 +37,27 @@ const theme = createTheme({
       textAlign: "center"
     },
     h6: {
-      fontSize: "1.5em",
+      fontSize: "1.3rem",
       textAlign: "center",
       width: "max-content"
     },
+
     subtitle1: {
       fontWeight: 200,
-      fontSize: "1.7rem",
+      fontSize: "1.2rem",
       paddingTop: "10px",
       textAlign: "center"
+    }
+  },
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: "#fafafa",
+          color: "#132F4C",
+          border: "2px solid #3DAD6A "
+        }
+      }
     }
   }
 });

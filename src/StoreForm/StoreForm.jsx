@@ -6,19 +6,24 @@ import Box from "@mui/material/Box";
 import theme from "../theme/theme";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@emotion/react";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AddStore } from "../Redux/Actions/AddStoreAction";
 import { addStore } from "../services/tableDataServices";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function StoreForm() {
   const [storeName, setStoreName] = useState("");
   const [category, setcategory] = useState([]);
   const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const SubmitForm = async (e) => {
     e.preventDefault();
+    toast.success("Store Created SuccessFully!");
 
     if (storeName === "") {
       setError(true);
@@ -39,6 +44,9 @@ function StoreForm() {
     setTags([]);
     setcategory("");
     setError(false);
+    setTimeout(() => {
+      navigate("/stores");
+    }, 3000);
   };
 
   const [tags, setTags] = useState([]);
@@ -132,9 +140,8 @@ function StoreForm() {
                       color: "#FFFFFF",
                       padding: ".3em",
                       borderRadius: "10px",
-                      marginTop: "2%",
-                      marginLeft: "2%",
-                      marginRight: "2%",
+                      marginTop: "0.2rem",
+                      marginLeft: "0.3rem",
                       border: "1px solid grey"
                     }}>
                     {tags}
@@ -150,6 +157,7 @@ function StoreForm() {
                         alignItems: "center",
                         borderRadius: "50%",
                         marginLeft: ".5em",
+                        paddingBottom: "3px",
                         border: "2px solid black",
                         fontSize: "18px",
                         cursor: "pointer"
@@ -170,12 +178,22 @@ function StoreForm() {
                     marginTop: "1rem",
                     marginBottom: "1.5rem",
                     width: "8rem",
-                    float: "right"
+                    float: "right",
+                    color: "white"
                   }}>
-                  <Link to="/stores" style={{ textDecoration: "none", color: "white" }}>
-                    Add Store
-                  </Link>
+                  Add Store
                 </Button>
+
+                <ToastContainer
+                  position="top-right"
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
               </Grid>
             </Box>
           </Box>

@@ -10,15 +10,22 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import { Typography } from "@mui/material";
 import theme from "../theme/theme";
 import { ThemeProvider } from "@emotion/react";
+import Tooltip from "@mui/material/Tooltip";
 const columns = [
-  { field: "index", headerName: "Store No", flex: 1 },
-  { field: "name", headerName: "Store Name", flex: 1 },
-  { field: "categories", headerName: "Store Category", flex: 1 },
+  { field: "index", headerName: "Store No", flex: 1, headerClassName: "super-app-theme--header" },
+  { field: "name", headerName: "Store Name", flex: 1, headerClassName: "super-app-theme--header" },
+  {
+    field: "categories",
+    headerName: "Store Category",
+    flex: 1,
+    headerClassName: "super-app-theme--header"
+  },
 
   {
     field: "view",
     headerName: "View Store",
     flex: 1,
+    headerClassName: "super-app-theme--header",
     sortable: false,
     renderCell: (params) => {
       return (
@@ -80,22 +87,24 @@ export default function Table() {
               marginTop: "2rem"
             }}>
             <Typography variant="h2">STORES DATA</Typography>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#3DAD6A",
-                paddingTop: "0.5rem"
-              }}>
-              <Link
-                to="/createstores"
-                style={{
-                  textDecoration: "none",
-                  color: "white"
+            <Tooltip title="Create Store" placement="right-end" arrow>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#3DAD6A",
+                  paddingTop: "0.5rem"
                 }}>
-                <AddCircleOutlineIcon
-                  sx={{ height: "2.5rem", width: "2.5rem" }}></AddCircleOutlineIcon>
-              </Link>
-            </Button>
+                <Link
+                  to="/createstores"
+                  style={{
+                    textDecoration: "none",
+                    color: "white"
+                  }}>
+                  <AddCircleOutlineIcon
+                    sx={{ height: "2.5rem", width: "2.5rem" }}></AddCircleOutlineIcon>
+                </Link>
+              </Button>
+            </Tooltip>
           </Grid>
           <Grid
             container
