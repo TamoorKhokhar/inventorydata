@@ -1,6 +1,9 @@
 {
   "name": "inventory",
   "version": "0.1.0",
+  "engines": {
+    "node": "16.13.0"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -26,10 +29,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
